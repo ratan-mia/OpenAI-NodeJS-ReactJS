@@ -1,13 +1,13 @@
 
 import { Configuration, OpenAIApi } from 'openai';
-import { process } from '/env.js';
+import { process } from './env';
 
 
 
 // const apiKey = "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";
 
-const apiKey = process.env.OPENAI_API_KEY
-const url ="https://api.openai.com/v1/completions";
+// const apiKey = process.env.OPENAI_API_KEY
+// const url ="https://api.openai.com/v1/completions";
 
 const configuration = new Configuration({
   apiKey:  process.env.OPENAI_API_KEY
@@ -31,23 +31,39 @@ document.getElementById("send-btn").addEventListener("click", () => {
 
 })
 
-function fetchBotReply(){
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json',
-            'Authorization':`Bearer  ${apiKey}`
-        },
-        body: JSON.stringify({
-            'model' : 'text-davinci-003',
-            'prompt': 'Sound enthusiastic in five words or less.'
+// Javascript Code
+// function fetchBotReply(){
+//     fetch(url, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type' : 'application/json',
+//             'Authorization':`Bearer  ${apiKey}`
+//         },
+//         body: JSON.stringify({
+//             'model' : 'text-davinci-003',
+//             'prompt': 'Sound enthusiastic in five words or less.'
     
     
-        })
+//         })
     
-    }).then(response => response.json()).then(data =>
-        movieBossText.innerText = data.choices[0].text
-         )
+//     }).then(response => response.json()).then(data =>
+//         movieBossText.innerText = data.choices[0].text
+//          )
     
 
+// }
+
+
+// NodeJS code 
+
+async function fetchBotReply(){
+
+  const response = await openai.createCompletion({
+    'model' : 'text-davinci-003',
+    'prompt': 'Sound enthusiastic in five words or less.'
+  })
+
+  console.log(response);
+
 }
+
