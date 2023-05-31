@@ -1,6 +1,5 @@
-
 import { Configuration, OpenAIApi } from 'openai';
-import { process } from './env';
+import { process } from './env.js';
 
 
 
@@ -10,26 +9,25 @@ import { process } from './env';
 // const url ="https://api.openai.com/v1/completions";
 
 const configuration = new Configuration({
-  apiKey:  process.env.OPENAI_API_KEY
-})
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
-const openai = new OpenAIApi(configuration)
-
-const setupTextarea = document.getElementById('setup-textarea') ;
-const setupInputContainer = document.getElementById('setup-input-container');
-const movieBossText = document.getElementById('movie-boss-text');
-
+// const setupTextarea = document.getElementById('setup-textarea') ;
+// const setupInputContainer = document.getElementById('setup-input-container');
+// const movieBossText = document.getElementById('movie-boss-text');
 
 
-document.getElementById("send-btn").addEventListener("click", () => {
-  if (setupTextarea.value) {
-    setupInputContainer.innerHTML = `<img src="images/loading.svg" class="loading" id="loading">`;
-    movieBossText.innerText = `Ok, just wait a second while my digital brain digests that...`;
-  }
 
-  fetchBotReply();
+// document.getElementById("send-btn").addEventListener("click", () => {
+//   if (setupTextarea.value) {
+//     setupInputContainer.innerHTML = `<img src="images/loading.svg" class="loading" id="loading">`;
+//     movieBossText.innerText = `Ok, just wait a second while my digital brain digests that...`;
+//   }
 
-})
+//   fetchBotReply();
+
+// })
 
 // Javascript Code
 // function fetchBotReply(){
@@ -67,3 +65,5 @@ async function fetchBotReply(){
 
 }
 
+
+fetchBotReply();
